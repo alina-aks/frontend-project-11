@@ -1,0 +1,25 @@
+{
+  "name": "@hexlet/code",
+  "version": "1.0.0",
+  "description": "[![Actions Status](https://github.com/alina-aks/frontend-project-11/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/alina-aks/frontend-project-11/actions)",
+  "main": "index.js",
+  "scripts": {
+  "lint": "eslint ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alina-aks/frontend-project-11.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/alina-aks/frontend-project-11/issues"
+  },
+  "homepage": "https://github.com/alina-aks/frontend-project-11#readme",
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.9.0"
+  }
+}
