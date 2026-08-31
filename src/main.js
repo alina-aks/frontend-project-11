@@ -5,15 +5,24 @@ import state from './state.js';
 
 initView()
 
+yup.setLocale({
+  mixed: {
+    required: 'errors.required',
+  },
+  string: {
+    url: 'errors.invalidUrl',
+  },
+})
+
 const form = document.querySelector("#rss-form");
 const input = document.querySelector("#url-input");
 
 const schema = yup.string()
-  .required("Не должно быть пустым")
-  .url("Ссылка должна быть валидным URL")
+  .required()
+  .url()
   .test(
-    'notDuplicate',
-    'RSS уже существует',
+    "notDuplicate",
+    "errors.duplicate",
     (value) => !state.feeds.includes(value),
 
 )
