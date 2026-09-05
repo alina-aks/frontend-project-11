@@ -22,6 +22,7 @@ const updateFeeds = () => {
                         feedId: feed.id,
                         title: post.title,
                         link: post.link,
+                        description: post.description,
                     }))
                 state.posts.push(...newPosts)
             })

@@ -59,6 +59,7 @@ form.addEventListener("submit", (event)=>{
         feedId,
         title: post.title,
         link: post.link,
+        description: post.description,
       }))
 
       state.feeds.push(newFeed)

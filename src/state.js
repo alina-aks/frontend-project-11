@@ -6,7 +6,8 @@ const state = proxy({
     form: {
         error: null,
         status: "idle"
-    }
+    },
+    seenPostsId: []
 })
 
 export default state

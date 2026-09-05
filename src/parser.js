@@ -19,13 +19,12 @@ const parseRss = (data) => {
     const posts = items.map((item)=>{
         const title = item.querySelector("title").textContent
         const link = item.querySelector("link").textContent
-        return {title, link}
+        const description = item.querySelector("description").textContent
+        return {title, link, description}
     })
 
     const feed = {title, description}
-
     return {feed, posts}
-
 }
 
 export default parseRss;

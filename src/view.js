@@ -9,6 +9,12 @@ const initView = () => {
     const feedsContainer = document.querySelector("#feeds")
     const postsContainer = document.querySelector("#posts") 
 
+    const dialog = document.querySelector("dialog")
+    const dialogTitle = document.querySelector("#modal-title")
+    const dialogBody = document.querySelector(`[data-test="modal-body"]`)
+    const dialogLink = document.querySelector("#modal-link")
+
+
     const renderForm = () => {
 
         if (state.form.status === 'loading') {
@@ -43,6 +49,7 @@ const initView = () => {
         input.classList.remove("border-red-500", "border-blue-500");
         feedback.classList.remove("text-red-500", "text-green-600");
     }
+
 
     const renderFeeds = () => {
         feedsContainer.innerHTML = ""
@@ -80,6 +87,7 @@ const initView = () => {
 
     }
 
+
     const renderPosts = () => {
         postsContainer.innerHTML = ''
         if (state.posts.length === 0) {
@@ -88,27 +96,81 @@ const initView = () => {
 
         const title = document.createElement('h2')
         title.textContent = i18next.t('sections.posts')
-        title.classList.add('text-2xl', 'font-semibold', 'mb-4')
+        title.classList.add("text-2xl", "font-semibold", "mb-4")
         postsContainer.append(title)
 
-        const list = document.createElement('ul')
-        list.classList.add('space-y-3')
+        const list = document.createElement("ul")
+        list.classList.add("space-y-3")
 
         state.posts.forEach((post) => {
-            const item = document.createElement('li')
-            const link = document.createElement('a')
+            const item = document.createElement("li")
+            item.classList.add(
+            'flex',
+            'items-center',
+            'justify-between',
+            'gap-3',
+            'rounded-lg',
+            'bg-white',
+            'px-4',
+            'py-3',
+            'shadow-sm',
+            )
+            const link = document.createElement("a")
+            const button = document.createElement("button")
+            const isSeen = state.seenPostsId.includes(post.id)
+
+            link.setAttribute('data-seen', isSeen.toString())
+
+            if (isSeen) {
+                link.classList.add('font-normal')
+            } else {
+                link.classList.add('font-bold')
+            }
 
             link.textContent = post.title
             link.href = post.link
-            link.target = '_blank'
-            link.rel = 'noopener noreferrer'
+            link.target = "_blank"
+            link.rel = "noopener noreferrer"
+            link.classList.add("text-blue-600", "hover:underline")
 
-            link.classList.add('text-blue-600', 'hover:underline')
+            button.textContent = "Просмотр"
+            button.type = "button"
+            
+            button.classList.add(
+            'ml-3',
+            'rounded-lg',
+            'border',
+            'border-gray-300',
+            'bg-white',
+            'px-3',
+            'py-1',
+            'text-sm',
+            'font-medium',
+            'text-gray-700',
+            'shadow-sm',
+            'hover:bg-gray-100',
+            )
+
+            button.addEventListener("click", () => {
+                dialogTitle.textContent = post.title
+                dialogBody.textContent = post.description
+                dialogLink.href = post.link
+
+                if (!state.seenPostsId.includes(post.id)) {
+                    state.seenPostsId.push(post.id)
+                }
+
+                dialog.showModal()
+        })
+
             item.append(link)
+            item.append(button)
             list.append(item)
         })
+
         postsContainer.append(list)
   }
+
 
     renderForm()
     renderFeeds()

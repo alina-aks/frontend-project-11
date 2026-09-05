@@ -5,8 +5,8 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>RSS Aggregator</title>
-    <script type="module" crossorigin src="/assets/index-CLJhObWC.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-DfqwGMMU.css">
+    <script type="module" crossorigin src="/assets/index-BMuQoDd-.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-P6yp2b3z.css">
   </head>
   <body>
     <main class="w-[calc(100%-2rem)] max-w-4xl mx-auto mt-12 bg-gray-200 rounded-xl p-8">
@@ -25,12 +25,44 @@
 
     <div class="w-[calc(100%-2rem)] max-w-4xl mx-auto mt-8 grid gap-6 md:grid-cols-2">
       <div id="feeds">
-
       </div>
       <div id="posts">
-
       </div>
     </div>
+
+    <dialog id="post-modal" class="fixed left-1/2 top-1/2 w-[calc(100%-2rem)] max-w-lg -translate-x-1/2 -translate-y-1/2 rounded-2xl p-0 shadow-2xl backdrop:bg-black/40">
+      <div class="p-6">
+        <div class="flex items-start justify-between gap-4 border-b border-gray-200 pb-4">
+          <h2 id="modal-title" class="text-2xl font-semibold text-gray-900" ></h2>
+
+          <button id="modal-close" type="button" class="rounded-lg px-2 py-1 text-xl text-gray-500 hover:bg-gray-100">
+          </button>
+        </div>
+
+        <div data-test="modal-body" class="py-5 text-base leading-7 text-gray-700">
+        </div>
+
+        <div class="flex flex-col gap-3 border-t border-gray-200 pt-4 sm:flex-row sm:justify-end">
+          <a
+            id="modal-link"
+            href="#"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="rounded-lg bg-gray-800 px-4 py-2 text-center font-medium text-white hover:bg-gray-700"
+          >
+            Читать полностью
+          </a>
+
+          <button
+            type="button"
+            class="rounded-lg border border-gray-300 bg-white px-4 py-2 font-medium text-gray-700 hover:bg-gray-100"
+            onclick="this.closest('dialog').close()"
+          >
+            Закрыть
+          </button>
+        </div>
+      </div>
+    </dialog>
 
 
   </body>
