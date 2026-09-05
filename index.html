@@ -14,12 +14,21 @@
     <label for="url-input" class="sr-only">Ссылка RSS</label>
     <form id="rss-form" class="flex flex-col gap-3 sm:flex-row">
       <input type="text" name="url" id="url-input" placeholder="Ссылка RSS" class="w-full flex-1 rounded-lg">
-      <button type="submit" class="w-full sm:w-auto bg-gray-600 text-white px-6 py-3 rounded-lg">Добавить</button>
+      <button id="submit-button" type="submit" class="w-full sm:w-auto bg-gray-600 text-white px-6 py-3 rounded-lg">Добавить</button>
     </form>
     <p id="feedback"></p>
     <p class="text-sm text-gray-400 mt-4 ">Пример: https://lorem-rss.hexlet.app/feed</p>
 
     </main>
+
+    <div class="w-[calc(100%-2rem)] max-w-4xl mx-auto mt-8 grid gap-6 md:grid-cols-2">
+      <div id="feeds">
+
+      </div>
+      <div id="posts">
+
+      </div>
+    </div>
 
 
     <script type="module" src="/src/main.js"></script>
