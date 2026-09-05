@@ -4,8 +4,11 @@ import * as yup from 'yup';
 import state from './state.js';
 import axios from 'axios';
 import parseRss from './parser.js';
+import buildProxyUrl from './api.js';
+import updateFeeds from './updater.js';
 
 initView()
+updateFeeds()
 
 yup.setLocale({
   mixed: {
@@ -79,12 +82,5 @@ form.addEventListener("submit", (event)=>{
     })
 
 })
-
-const buildProxyUrl = (url) => {
-  const encodedUrl = encodeURIComponent(url);
-
-  const proxyUrl = "https://allorigins.hexlet.app/get?disableCache=true&url="+encodedUrl
-  return proxyUrl
-}
 
 
