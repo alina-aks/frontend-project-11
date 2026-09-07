@@ -1,30 +1,45 @@
 const parseRss = (data) => {
-    const parser = new DOMParser
-    const parseDoc = parser.parseFromString(data, "application/xml");
+  const parser = new DOMParser()
+  const parseDoc = parser.parseFromString(data, 'application/xml')
 
-    const parseError = parseDoc.querySelector('parsererror')
-    if (parseError) {
-        throw new Error('errors.invalidRss')
+  const parseError = parseDoc.querySelector('parsererror')
+
+  if (parseError) {
+    throw new Error('errors.invalidRss')
+  }
+
+  const xmlDoc = parseDoc.querySelector('channel')
+
+  if (!xmlDoc) {
+    throw new Error('errors.invalidRss')
+  }
+
+  const title = xmlDoc.querySelector('title')?.textContent ?? ''
+  const description = xmlDoc.querySelector('description')?.textContent ?? ''
+
+  const items = Array.from(xmlDoc.querySelectorAll('item'))
+
+  const posts = items.map((item) => {
+    const title = item.querySelector('title')?.textContent ?? ''
+    const link = item.querySelector('link')?.textContent ?? ''
+    const description = item.querySelector('description')?.textContent ?? ''
+
+    return {
+      title,
+      link,
+      description,
     }
+  })
 
-    const xmlDoc = parseDoc.querySelector("channel");
-    if (!xmlDoc) {
-        throw new Error('errors.invalidRss')
-    }
+  const feed = {
+    title,
+    description,
+  }
 
-    const title = xmlDoc.querySelector("title").textContent;
-    const description = xmlDoc.querySelector("description").textContent;
-    const items = Array.from(xmlDoc.querySelectorAll("item"))
-
-    const posts = items.map((item)=>{
-        const title = item.querySelector("title").textContent
-        const link = item.querySelector("link").textContent
-        const description = item.querySelector("description").textContent
-        return {title, link, description}
-    })
-
-    const feed = {title, description}
-    return {feed, posts}
+  return {
+    feed,
+    posts,
+  }
 }
 
-export default parseRss;
+export default parseRss
