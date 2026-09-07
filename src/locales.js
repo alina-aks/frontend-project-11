@@ -4,6 +4,12 @@ const resourses = {
             form: {
                 success: "RSS успешно загружен",
             },
+            buttons: {
+                add: 'Добавить',
+                preview: 'Просмотр',
+                close: 'Закрыть',
+                readFull: 'Читать полностью',
+            },
             errors: {
                 required: "Не должно быть пустым",
                 invalidUrl: "Ссылка должна быть валидным URL",

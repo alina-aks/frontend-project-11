@@ -133,7 +133,7 @@ const initView = () => {
             link.rel = "noopener noreferrer"
             link.classList.add("text-blue-600", "hover:underline")
 
-            button.textContent = "Просмотр"
+            button.textContent = i18next.t('buttons.preview')
             button.type = "button"
             
             button.classList.add(
@@ -170,6 +170,12 @@ const initView = () => {
 
         postsContainer.append(list)
   }
+
+    const dialogClose = document.querySelector('#modal-close')
+
+    dialogClose.addEventListener('click', () => {
+        dialog.close()
+    })
 
 
     renderForm()
