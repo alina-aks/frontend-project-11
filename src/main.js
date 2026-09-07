@@ -6,6 +6,7 @@ import axios from 'axios';
 import parseRss from './parser.js';
 import buildProxyUrl from './api.js';
 import updateFeeds from './updater.js';
+import generateId from './id.js'
 
 initView()
 updateFeeds()
@@ -45,7 +46,7 @@ form.addEventListener("submit", (event)=>{
     .then((response)=>{
       const data = response.data.contents
       const {feed, posts} = parseRss(data)
-      const feedId = crypto.randomUUID()
+      const feedId = generateId()
 
       const newFeed = {
         id: feedId,
@@ -55,7 +56,7 @@ form.addEventListener("submit", (event)=>{
       }
 
       const newPosts = posts.map((post) => ({
-        id: crypto.randomUUID(),
+        id: generateId(),
         feedId,
         title: post.title,
         link: post.link,

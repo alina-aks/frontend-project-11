@@ -2,6 +2,7 @@ import buildProxyUrl from "./api.js";
 import axios from 'axios'
 import state from './state.js'
 import parseRss from './parser.js'
+import generateId from './id.js'
 
 const updateFeeds = () => {
     const promises = state.feeds.map((feed) => {
@@ -18,7 +19,7 @@ const updateFeeds = () => {
                         )
                     })
                     .map((post)=>({
-                        id: crypto.randomUUID(),
+                        id: generateId(),
                         feedId: feed.id,
                         title: post.title,
                         link: post.link,
